@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames", "CardGames\CardGames.csproj", "{7755C74E-7BB7-47FF-BA17-0FF4339E19CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus", "..\MonoPlus\MonoPlus\MonoPlus.csproj", "{37E8891A-43ED-403B-B393-F03478412745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Input", "..\MonoPlus.Input\MonoPlus.Input\MonoPlus.Input.csproj", "{C60E3424-33F4-4E98-860F-96854C23E225}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7755C74E-7BB7-47FF-BA17-0FF4339E19CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7755C74E-7BB7-47FF-BA17-0FF4339E19CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7755C74E-7BB7-47FF-BA17-0FF4339E19CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7755C74E-7BB7-47FF-BA17-0FF4339E19CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E8891A-43ED-403B-B393-F03478412745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E8891A-43ED-403B-B393-F03478412745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E8891A-43ED-403B-B393-F03478412745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E8891A-43ED-403B-B393-F03478412745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60E3424-33F4-4E98-860F-96854C23E225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60E3424-33F4-4E98-860F-96854C23E225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60E3424-33F4-4E98-860F-96854C23E225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60E3424-33F4-4E98-860F-96854C23E225}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

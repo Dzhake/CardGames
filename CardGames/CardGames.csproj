@@ -23,7 +23,8 @@
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.2.1105" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MonoPlus.Input\MonoPlus.Input\MonoPlus.Input.csproj" />
     <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.csproj" />
+    <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.Drawing\MonoPlus.Drawing.csproj" />
+    <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.Input\MonoPlus.Input.csproj" />
   </ItemGroup>
 </Project>

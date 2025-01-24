@@ -6,7 +6,7 @@ public static class ConsoleCore
 {
     public static Drawer drawer;
     public static ConsoleInput input;
-    public static Queue<string> Lines;
+    public static List<string> Lines;
 
     public static void Initialize()
     {
@@ -15,10 +15,9 @@ public static class ConsoleCore
         Lines = new();
     }
 
-    public static void EnqueueLine(string line)
-    {
-        Lines.Enqueue(line);
-    }
+    public static void Log(string line) => Lines.Add(line);
+
+    public static void Log(object o) => Log(o.ToString());
 
     public static void Update()
     {

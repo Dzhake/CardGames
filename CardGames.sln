@@ -7,12 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames", "CardGames\Card
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus", "..\MonoPlus\MonoPlus\MonoPlus.csproj", "{37E8891A-43ED-403B-B393-F03478412745}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Input", "..\MonoPlus.Input\MonoPlus.Input\MonoPlus.Input.csproj", "{C60E3424-33F4-4E98-860F-96854C23E225}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{232C0E74-BC20-4B35-929D-D53AF7B74B8C}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Input", "..\MonoPlus\MonoPlus\MonoPlus.Input\MonoPlus.Input.csproj", "{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Drawing", "..\MonoPlus\MonoPlus\MonoPlus.Drawing\MonoPlus.Drawing.csproj", "{5B8A7265-3430-4AD6-B545-568CDCC0E550}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +30,14 @@ Global
 		{37E8891A-43ED-403B-B393-F03478412745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37E8891A-43ED-403B-B393-F03478412745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37E8891A-43ED-403B-B393-F03478412745}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C60E3424-33F4-4E98-860F-96854C23E225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C60E3424-33F4-4E98-860F-96854C23E225}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C60E3424-33F4-4E98-860F-96854C23E225}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C60E3424-33F4-4E98-860F-96854C23E225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B8A7265-3430-4AD6-B545-568CDCC0E550}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8A7265-3430-4AD6-B545-568CDCC0E550}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B8A7265-3430-4AD6-B545-568CDCC0E550}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8A7265-3430-4AD6-B545-568CDCC0E550}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

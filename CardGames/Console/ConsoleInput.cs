@@ -17,9 +17,9 @@ public class ConsoleInput
     public void Update()
     {
         input.Update();
-        if (Input.PressedKeys?.Contains(Keys.Enter) ?? false)
+        if (Input.Pressed(Keys.Enter))
         {
-            ConsoleCore.EnqueueLine(input.text.ToString());
+            ConsoleCore.Log(input.text.ToString());
             input.text.Clear();
         }
     }

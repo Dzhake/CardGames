@@ -26,6 +26,7 @@ public class Engine : Game
         graphicsManager = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         gameWindow = Window;
+        Window.AllowUserResizing = true;
     }
 
     protected override void Initialize()

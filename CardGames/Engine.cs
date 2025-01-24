@@ -9,32 +9,42 @@ namespace CardGames;
 public class Engine : Game
 {
     public static Engine Instance;
-    public static Drawer Drawer;
 
-    public static GraphicsDeviceManager GraphicsManager;
-    public static SpriteBatch SpriteBatch;
-    public static GraphicsDevice Graphics;
+    public static GraphicsDeviceManager graphicsManager;
+    public static SpriteBatch spriteBatch;
+    public static GraphicsDevice graphics;
+    public static GameWindow gameWindow;
 
     public static float DeltaTime;
     public static float TotalTime;
 
+    public static SpriteFont Font;
+
     public Engine()
     {
         Instance = this;
-        GraphicsManager = new GraphicsDeviceManager(this);
+        graphicsManager = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        Drawer = new();
+        gameWindow = Window;
     }
 
     protected override void Initialize()
     {
-        Input.Initialize();
+        Input.Initialize(this);
+        ConsoleCore.Initialize();
         base.Initialize();
+    }
+
+    protected void LoadDefault()
+    {
+        Font = Content.Load<SpriteFont>("EditUndo");
     }
 
     protected override void LoadContent()
     {
-        SpriteBatch = new SpriteBatch(GraphicsDevice);
+        graphics = graphicsManager.GraphicsDevice;
+        spriteBatch = new SpriteBatch(GraphicsDevice);
+        LoadDefault();
     }
 
     protected override void Update(GameTime gameTime)
@@ -42,12 +52,14 @@ public class Engine : Game
         DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         TotalTime = (float)gameTime.TotalGameTime.TotalSeconds;
         Input.Update();
+        ConsoleCore.Update();
+        Input.PostUpdate();
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        Drawer.Draw();
+        ConsoleCore.Draw();
         base.Draw(gameTime);
     }
 }

@@ -13,10 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin EditUndo.spritefont
+#begin Fonts/EditUndo.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:EditUndo.spritefont
+/build:Fonts/EditUndo.spritefont
 

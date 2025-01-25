@@ -24,5 +24,6 @@
     <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.csproj" />
     <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.Drawing\MonoPlus.Graphics.csproj" />
     <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.Input\MonoPlus.Input.csproj" />
+    <ProjectReference Include="..\..\MonoPlus\MonoPlus\MonoPlus.Time\MonoPlus.Time.csproj" />
   </ItemGroup>
 </Project>

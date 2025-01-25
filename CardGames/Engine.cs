@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
 using MonoPlus.Input;
+using MonoPlus.Time;
 
 namespace CardGames;
 
@@ -10,13 +11,7 @@ namespace CardGames;
 public class Engine : Game
 {
     public static Engine Instance;
-
-    
     public static GameWindow gameWindow;
-
-    public static float DeltaTime;
-    public static float TotalTime;
-
     public static SpriteFont Font;
 
     public Engine()
@@ -48,8 +43,8 @@ public class Engine : Game
 
     protected override void Update(GameTime gameTime)
     {
-        DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        TotalTime = (float)gameTime.TotalGameTime.TotalSeconds;
+        Time.DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        Time.TotalTime = (float)gameTime.TotalGameTime.TotalSeconds;
         Input.Update();
         ConsoleCore.Update();
         Input.PostUpdate();

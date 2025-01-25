@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Graphics", "..\Mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL3.Core", "..\MonoPlus\SDL3-CS\SDL3\SDL3.Core.csproj", "{ECC1C461-D866-4E13-9243-49AAE90DC11F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Time", "..\MonoPlus\MonoPlus\MonoPlus.Time\MonoPlus.Time.csproj", "{F12AC85E-D0CB-465F-B699-69C3B2C9A297}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{ECC1C461-D866-4E13-9243-49AAE90DC11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECC1C461-D866-4E13-9243-49AAE90DC11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECC1C461-D866-4E13-9243-49AAE90DC11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12AC85E-D0CB-465F-B699-69C3B2C9A297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12AC85E-D0CB-465F-B699-69C3B2C9A297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12AC85E-D0CB-465F-B699-69C3B2C9A297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12AC85E-D0CB-465F-B699-69C3B2C9A297}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,7 +22,6 @@ public static class ConsoleCore
     public static void Update()
     {
         input.Update();
-        Log($"Cursor Pos: {input.input.CursorPos}, SelectionStart: {input.input.SelectionStart}, SelectionEnd: {input.input.SelectionEnd}");
     }
 
     public static void Draw()

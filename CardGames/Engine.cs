@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
 using MonoPlus.Input;
 using MonoPlus.Time;
+using SDL3;
 
 namespace CardGames;
 
@@ -21,6 +22,7 @@ public class Engine : Game
         gameWindow = Window;
         Window.AllowUserResizing = true;
         Graphics.OnGameCreated(this);
+        SDL.SDL_Init(SDL.SDL_InitFlags.SDL_INIT_VIDEO);
     }
 
     protected override void Initialize()

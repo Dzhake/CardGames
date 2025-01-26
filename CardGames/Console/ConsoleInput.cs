@@ -19,7 +19,7 @@ public class ConsoleInput
         if (Input.Pressed(Keys.Enter))
         {
             ConsoleCore.Log(input.text.ToString());
-            input.text.Clear();
+            input.Reset();
         }
     }
 }

@@ -16,7 +16,7 @@ public class ShellInput
     public void Update()
     {
         input.Update();
-        if (Input.Pressed(Keys.Enter))
+        if (Input.Pressed(Keys.Enter) && input.text.Length > 0)
         {
             Shell.Run(input.text.ToString());
             input.Reset();

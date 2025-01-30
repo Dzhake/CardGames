@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using MonoPlus.Input;
+using MonoPlus.Time;
 
 namespace CardGames.Console;
 
@@ -12,6 +15,8 @@ public static class Shell
     public static ShellInput? input;
     public static List<ShellLine>? Lines;
     public static Dictionary<string, CommandInfo>? Commands;
+    public static int LineOffset;
+    private static float LineOffsetDelay;
 
     public static void Initialize()
     {
@@ -25,6 +30,17 @@ public static class Shell
     public static void Update()
     {
         input?.Update();
+        LineOffsetDelay -= Time.DeltaTime;
+        if (Lines is null || LineOffsetDelay > 0) return;
+
+        if (Input.Down(Keys.Up))
+            LineOffset++;
+        else if (Input.Down(Keys.Down))
+            LineOffset--;
+        else
+            return;
+        LineOffsetDelay = 0.05f;
+        LineOffset = Math.Clamp(LineOffset, 0, Lines.Count - 1);
     }
 
     public static void Draw()
@@ -43,7 +59,6 @@ public static class Shell
 
         foreach (MethodInfo method in methods)
         {
-            Log("found a method!");
             if (!method.IsStatic)
             {
                 Log($"Method {method.Name} in type {method.DeclaringType?.FullName ?? "<unknown>"} is not static!", Color.Red);
@@ -51,7 +66,6 @@ public static class Shell
             }
 
             Commands.Add(method.Name.ToLower(), new CommandInfo(method));
-            Log(method.Name.ToLower());
         }
     }
 

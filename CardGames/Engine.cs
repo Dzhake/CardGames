@@ -1,4 +1,5 @@
-﻿using CardGames.Console;
+﻿using System;
+using CardGames.Console;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
@@ -11,9 +12,9 @@ namespace CardGames;
 
 public class Engine : Game
 {
-    public static Engine Instance;
-    public static GameWindow gameWindow;
-    public static SpriteFont Font;
+    public static Engine? Instance;
+    public static GameWindow? gameWindow;
+    public static SpriteFont? Font;
 
     public Engine()
     {
@@ -29,7 +30,7 @@ public class Engine : Game
     {
         Graphics.Initialize(this);
         Input.Initialize(this);
-        ConsoleCore.Initialize();
+        Shell.Initialize();
         base.Initialize();
     }
 
@@ -48,14 +49,14 @@ public class Engine : Game
         Time.DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
         Time.TotalTime = (float)gameTime.TotalGameTime.TotalSeconds;
         Input.Update();
-        ConsoleCore.Update();
+        Shell.Update();
         Input.PostUpdate();
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        ConsoleCore.Draw();
+        Shell.Draw();
         base.Draw(gameTime);
     }
 }

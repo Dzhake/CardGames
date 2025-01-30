@@ -3,11 +3,11 @@ using MonoPlus.Input;
 
 namespace CardGames.Console;
 
-public class ConsoleInput
+public class ShellInput
 {
     public TextField input;
 
-    public ConsoleInput()
+    public ShellInput()
     {
         input = new TextField();
         Input.FocusedTextField = input;
@@ -18,7 +18,7 @@ public class ConsoleInput
         input.Update();
         if (Input.Pressed(Keys.Enter))
         {
-            ConsoleCore.Log(input.text.ToString());
+            Shell.Run(input.text.ToString());
             input.Reset();
         }
     }

@@ -11,7 +11,6 @@ public static class Shell
     public static ShellDrawer? drawer;
     public static ShellInput? input;
     public static List<ShellLine>? Lines;
-
     public static Dictionary<string, CommandInfo>? Commands;
 
     public static void Initialize()
@@ -21,7 +20,6 @@ public static class Shell
         Lines = new();
         AutoComplProviders.Initialize();
         FindCommands(Assembly.GetExecutingAssembly());
-        Log("111!");
     }
 
     public static void Update()
@@ -37,7 +35,6 @@ public static class Shell
     public static void FindCommands(Assembly assembly)
     {
         Commands = new();
-        Log("Starting find commands!");
         //haha linq goes brrrr
         IEnumerable<MethodInfo> methods = from type in assembly.GetTypes()
             from method in type.GetMethods()

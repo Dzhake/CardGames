@@ -16,6 +16,9 @@ public class Engine : Game
     public static GameWindow? gameWindow;
     public static SpriteFont? Font;
 
+    public static float WindowWidth => gameWindow?.ClientBounds.Width ?? 0;
+    public static float WindowHeight => gameWindow?.ClientBounds.Height ?? 0;
+
     public Engine()
     {
         Instance = this;

@@ -1,5 +1,4 @@
-﻿using System;
-using CardGames.Console;
+﻿using CardGames.Console;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;

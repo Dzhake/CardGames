@@ -38,7 +38,7 @@ public class Engine : Game
 
     protected void LoadDefault()
     {
-        Font = Content.Load<SpriteFont>("Fonts/EditUndo");
+        Font = Content.Load<SpriteFont>("Fonts/Consolas");
     }
 
     protected override void LoadContent()

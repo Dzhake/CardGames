@@ -13,10 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/EditUndo.spritefont
+#begin Fonts/Consolas.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/EditUndo.spritefont
+/build:Fonts/Consolas.spritefont
 

@@ -44,15 +44,18 @@ public class ShellDrawer
         {
             ShellLine line = Shell.Lines[itemIndex];
             drawPos.Y -= line.Size.Y;
+            drawPos.X = arrowOffset.X;
             foreach (ColoredString str in line.Parts)
             {
                 Graphics.DrawText(font, str.text, drawPos, str.color);
+                drawPos.X += font.MeasureString(str.text).X;
                 if (str.EndsWithNewline)
                 {
                     drawPos.X = arrowOffset.X;
                     drawPos.Y += font.LineSpacing;
                 }
             }
+            //drawPos.Y -= line.Size.Y;
             if (drawPos.Y < 0) break;
         }
 

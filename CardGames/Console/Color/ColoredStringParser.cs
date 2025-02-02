@@ -23,7 +23,12 @@ public static class ColoredStringParser
         {
             ReadOnlySpan<char> fragment = parser.ReadUntil(ch => ch is '\n' or '{');
 
-            result.Add(new(fragment.ToString(), color, parser.Skip('\n')));
+            result.Add(new ColoredString
+            {
+                text = fragment.ToString(),
+                color = color,
+                EndsWithNewline = parser.Skip('\n')
+            });
 
             if (parser.Skip('{'))
                 ParseSpecial(ref parser);

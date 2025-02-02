@@ -10,6 +10,7 @@ public static class ColoredStringParser
 {
     private static Color DefaultColor;
     private static Color? currentColor;
+    private static Color? backgroundColor;
     private static Color color => currentColor ?? DefaultColor;
 
     public static List<ColoredString> Parse(string text, Color? defaultColor = null)
@@ -27,6 +28,7 @@ public static class ColoredStringParser
             {
                 text = fragment.ToString(),
                 color = color,
+                backgroundColor = backgroundColor,
                 EndsWithNewline = parser.Skip('\n')
             });
 
@@ -47,7 +49,25 @@ public static class ColoredStringParser
     private static void ParseSpecial(ref SpanParser parser)
     {
         if (parser.Skip('#'))
-            currentColor = GraphicUtils.ParseColor(parser.ReadUntil('}').ToString());
+        {
+            if (parser.Skip('}'))
+            {
+                currentColor = null;
+                return;
+            }
+
+            if (parser.Skip('#')) //background color
+            {
+                if (parser.Skip('}'))
+                {
+                    backgroundColor = null;
+                    return;
+                }
+                backgroundColor = GraphicUtils.ParseColor(parser.ReadUntil('}').ToString());
+            }
+            else
+                currentColor = GraphicUtils.ParseColor(parser.ReadUntil('}').ToString());
+        }
 
         if (!parser.Skip('}')) throw new FormatException();
     }

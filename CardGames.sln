@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{232C0E74-BC20-4B35-929D-D53AF7B74B8C}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.md = LICENSE.md
+		Notes.md = Notes.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoPlus.Input", "..\MonoPlus\MonoPlus\MonoPlus.Input\MonoPlus.Input.csproj", "{B23CA416-1DF5-472B-BF2B-1A0433BD6E73}"

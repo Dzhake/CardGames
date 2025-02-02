@@ -15,7 +15,6 @@ public class ShellDrawer
         if (Engine.gameWindow is null || Engine.Font is null || Shell.input is null || Shell.Lines is null) return;
         SpriteFont font = Engine.Font;
 
-
         Graphics.Clear(Color.Black);
         Graphics.Begin();
         
@@ -40,25 +39,29 @@ public class ShellDrawer
         Graphics.DrawLine(new Vector2(drawPos.X + cursorDrawOffset.X, drawPos.Y), drawPos + cursorDrawOffset, Color.White);
 
         //Lines log
-        for (int itemIndex = Shell.Lines.Count - 1 - Shell.LineOffset; itemIndex >= 0; itemIndex--)
+        for (int lineIndex = Shell.Lines.Count - 1 - Shell.LineOffset; lineIndex >= 0; lineIndex--)
         {
-            ShellLine line = Shell.Lines[itemIndex];
-            drawPos.Y -= line.Size.Y;
+            ShellLine shellLine = Shell.Lines[lineIndex];
+            drawPos.Y -= shellLine.Size.Y;
             drawPos.X = arrowOffset.X;
-            foreach (ColoredString str in line.Parts)
-            {
-                Graphics.DrawText(font, str.text, drawPos, str.color);
-                drawPos.X += font.MeasureString(str.text).X;
-                if (str.EndsWithNewline)
-                {
-                    drawPos.X = arrowOffset.X;
-                    drawPos.Y += font.LineSpacing;
-                }
-            }
-            //drawPos.Y -= line.Size.Y;
+            foreach (ColoredString coloredStr in shellLine.Parts)
+                DrawColoredString(font, coloredStr, ref drawPos, arrowOffset);
             if (drawPos.Y < 0) break;
         }
 
         Graphics.End();
+    }
+
+    protected virtual void DrawColoredString(SpriteFont font, ColoredString coloredStr, ref Vector2 drawPos, Vector2 arrowOffset)
+    {
+        Vector2 coloredStrSize = font.MeasureString(coloredStr.text);
+        if (coloredStr.backgroundColor is not null) Graphics.DrawRect(drawPos, drawPos + coloredStrSize, (Color)coloredStr.backgroundColor);
+        Graphics.DrawText(font, coloredStr.text, drawPos, coloredStr.color);
+        drawPos.X += coloredStrSize.X;
+        if (coloredStr.EndsWithNewline)
+        {
+            drawPos.X = arrowOffset.X;
+            drawPos.Y += font.LineSpacing;
+        }
     }
 }

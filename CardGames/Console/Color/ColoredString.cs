@@ -6,6 +6,6 @@ public class ColoredString
 {
     public required string text;
     public Color color;
-    public Color backgroundColor;
+    public Color? backgroundColor;
     public bool EndsWithNewline;
 }

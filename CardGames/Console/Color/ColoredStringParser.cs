@@ -2,38 +2,47 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Chasm.Formatting;
+using MonoPlus.Graphics;
 
 namespace CardGames.Console;
 
-public class ColoredStringParser
+public static class ColoredStringParser
 {
-    public Color defaultColor;
-    public Color? currentColor;
-    public Color color => currentColor ?? defaultColor;
+    private static Color DefaultColor;
+    private static Color? currentColor;
+    private static Color color => currentColor ?? DefaultColor;
 
-    public List<ColoredString> Parse(string text)
+    public static List<ColoredString> Parse(string text, Color? defaultColor = null)
     {
+        if (defaultColor is not null) DefaultColor = (Color)defaultColor;
+        if (Engine.Font != null) text = Engine.Font.WrapText(text, Engine.WindowWidth - 30);
         List<ColoredString> result = new();
-        currentColor = defaultColor;
         SpanParser parser = new(text);
 
         while (parser.CanRead())
         {
-            ReadOnlySpan<char> fragment = parser.ReadUntil('{');
+            ReadOnlySpan<char> fragment = parser.ReadUntil(ch => ch is '\n' or '{');
 
-            result.Add(new(fragment.ToString(), color));
+            result.Add(new(fragment.ToString(), color, parser.Skip('\n')));
 
             if (parser.Skip('{'))
                 ParseSpecial(ref parser);
         }
 
+        Reset();
         return result;
     }
 
-    protected void ParseSpecial(ref SpanParser parser)
+    public static void Reset()
+    {
+        currentColor = null;
+        DefaultColor = Color.White;
+    }
+
+    private static void ParseSpecial(ref SpanParser parser)
     {
         if (parser.Skip('#'))
-            currentColor = Util.ParseColor(parser.ReadUntil('}').ToString());
+            currentColor = GraphicUtils.ParseColor(parser.ReadUntil('}').ToString());
 
         if (!parser.Skip('}')) throw new FormatException();
     }

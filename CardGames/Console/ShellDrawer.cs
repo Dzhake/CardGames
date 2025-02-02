@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
 
@@ -20,7 +21,6 @@ public class ShellDrawer
         
         Vector2 arrowOffset = font.MeasureString("> ");
         Vector2 drawPos = new(arrowOffset.X, Engine.gameWindow.ClientBounds.Height - arrowOffset.Y - 30);
-        float maxWidth = Engine.WindowWidth - drawPos.X;
         TextField textField = Shell.input.input;
         
 
@@ -43,11 +43,17 @@ public class ShellDrawer
         for (int itemIndex = Shell.Lines.Count - 1 - Shell.LineOffset; itemIndex >= 0; itemIndex--)
         {
             ShellLine line = Shell.Lines[itemIndex];
-            string lineText = font.WrapText(line.Text, maxWidth);
-            Vector2 lineSize = font.MeasureString(lineText);
-            drawPos.Y -= (int)lineSize.Y;
-            if (drawPos.Y + lineSize.Y < 0) break;
-            Graphics.DrawText(font, lineText, drawPos, line.color);
+            drawPos.Y -= line.Size.Y;
+            foreach (ColoredString str in line.Parts)
+            {
+                Graphics.DrawText(font, str.text, drawPos, str.color);
+                if (str.EndsWithNewline)
+                {
+                    drawPos.X = arrowOffset.X;
+                    drawPos.Y += font.LineSpacing;
+                }
+            }
+            if (drawPos.Y < 0) break;
         }
 
         Graphics.End();

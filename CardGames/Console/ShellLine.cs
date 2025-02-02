@@ -13,7 +13,6 @@ public class ShellLine
     public ShellLine(string text, Color color)
     {
         if (Engine.Font is null) throw new InvalidOperationException($"Tried to create {GetType().FullName ?? "..full type name is null.."} but Engine.Font is null! ");
-        Size = Engine.Font.MeasureString(text);
-        Parts = ColoredStringParser.Parse(text, color);
+        Parts = ColoredStringParser.Parse(text, out Size, color);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
 
@@ -46,6 +45,7 @@ public class ShellDrawer
             drawPos.X = arrowOffset.X;
             foreach (ColoredString coloredStr in shellLine.Parts)
                 DrawColoredString(font, coloredStr, ref drawPos, arrowOffset);
+            drawPos.Y -= shellLine.Size.Y;
             if (drawPos.Y < 0) break;
         }
 

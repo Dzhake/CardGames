@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Chasm.Formatting;
+using Microsoft.Xna.Framework.Graphics;
 using MonoPlus.Graphics;
 
 namespace CardGames.Console;
@@ -13,10 +14,13 @@ public static class ColoredStringParser
     private static Color? backgroundColor;
     private static Color color => currentColor ?? DefaultColor;
 
-    public static List<ColoredString> Parse(string text, Color? defaultColor = null)
+    public static List<ColoredString> Parse(string text, out Vector2 totalSize, Color? defaultColor = null)
     {
+        SpriteFont? font = Engine.Font;
+        if (font is null) throw new InvalidOperationException("Tried to parse colored string, but Engine.Font is null!");
+        totalSize = Vector2.Zero;
         if (defaultColor is not null) DefaultColor = (Color)defaultColor;
-        if (Engine.Font != null) text = Engine.Font.WrapText(text, Engine.WindowWidth - 30);
+        text = font.WrapText(text, Engine.WindowWidth - 30);
         List<ColoredString> result = new();
         SpanParser parser = new(text);
 
@@ -24,12 +28,20 @@ public static class ColoredStringParser
         {
             ReadOnlySpan<char> fragment = parser.ReadUntil(ch => ch is '\n' or '{');
 
+            string fragmentString = fragment.ToString();
+            float fragmentWidth = font.MeasureString(fragmentString).X;
+            if (fragmentWidth > totalSize.X) totalSize.X = fragmentWidth;
+
+            bool newline = parser.Skip('\n') || !parser.CanRead();
+            if (newline)
+                totalSize.Y += font.LineSpacing;
+
             result.Add(new ColoredString
             {
-                text = fragment.ToString(),
+                text = fragmentString,
                 color = color,
                 backgroundColor = backgroundColor,
-                EndsWithNewline = parser.Skip('\n')
+                EndsWithNewline = newline
             });
 
             if (parser.Skip('{'))
@@ -44,6 +56,7 @@ public static class ColoredStringParser
     {
         currentColor = null;
         DefaultColor = Color.White;
+        backgroundColor = null;
     }
 
     private static void ParseSpecial(ref SpanParser parser)

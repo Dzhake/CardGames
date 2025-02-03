@@ -13,23 +13,30 @@ public static class Shell
 {
     public static ShellDrawer? drawer;
     public static ShellInput? input;
+    public static ShellRunner? runner;
     public static List<ShellLine>? Lines;
     public static Dictionary<string, CommandInfo>? Commands;
+    public static Dictionary<Type, Func<string, object?>>? ParamParsers;
     public static int LineOffset;
-    private static float LineOffsetDelay;
+    public static Menu? CurrentMenu;
+    public static float LineOffsetDelay;
 
     public static void Initialize()
     {
-        drawer = new();
-        input = new();
-        Lines = new();
+        drawer = new ShellDrawer();
+        input = new ShellInput();
+        runner = new ShellRunner();
+        Lines = new List<ShellLine>();
+        DefaultParamParsers.Initialize();
         AutoComplProviders.Initialize();
-        FindCommands(Assembly.GetExecutingAssembly());
+        ShellRunner.FindCommands(Assembly.GetExecutingAssembly());
+        CurrentMenu = new MainMenu();
     }
 
     public static void Update()
     {
         input?.Update();
+        CurrentMenu?.Update();
         LineOffsetDelay -= Time.DeltaTime;
         if (Lines is null || LineOffsetDelay > 0) return;
 
@@ -48,55 +55,20 @@ public static class Shell
         drawer?.Draw();
     }
 
-    public static void FindCommands(Assembly assembly)
+    public static void SetMenu(Menu menu)
     {
-        Commands = new();
-        //haha linq goes brrrr
-        IEnumerable<MethodInfo> methods = from type in assembly.GetTypes()
-            from method in type.GetMethods()
-            where method.IsDefined(typeof(CommandAttribute), true)
-            select method;
-
-        foreach (MethodInfo method in methods)
-        {
-            if (!method.IsStatic)
-            {
-                Log($"Method {method.Name} in type {method.DeclaringType?.FullName ?? "<unknown>"} is not static!", Color.Red);
-                return;
-            }
-
-            Commands.Add(method.Name.ToLower(), new CommandInfo(method));
-        }
+        if (CurrentMenu == menu) return;
+        CurrentMenu = menu;
+        CurrentMenu.Start();
     }
 
 
-    public static void Run(string commandInput)
+    public static void Log(object o, Color? color = null)
     {
-        Log($"> {commandInput}", Color.LightGreen);
-        if (Commands is null)
-        {
-            Log("The Commands is null!", Color.Red);
-            return;
-        }
-        string[] commandString = commandInput.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (commandString.Length == 0) return;
-        string commandName = commandString[0];
-
-        if (!Commands.TryGetValue(commandName, out CommandInfo? command))
-        {
-            Log($"Command not found: {commandName} {(commandName == commandInput ? "" : $"({commandInput})")}", Color.Red);
-            return;
-        }
-
-        command.Execute();
-    }
-
-
-    public static void Log(object o, Color color = default)
-    {
+        color ??= Color.White;
         string? line = o.ToString();
         if (line is null) throw new ArgumentException($"{o}.ToString() returns null!");
-        Lines?.Add(new(line, color));
+        Lines?.Add(new(line, (Color)color));
     }
 
     public static void Clear() => Lines?.Clear();

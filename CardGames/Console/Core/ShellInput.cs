@@ -18,7 +18,9 @@ public class ShellInput
         input.Update();
         if (Input.Pressed(Keys.Enter) && input.text.Length > 0)
         {
-            Shell.Run(input.text.ToString());
+            string inputText = input.text.ToString();
+            if (int.TryParse(inputText, out _)) inputText = $"do {inputText}";
+            Shell.runner?.Run(inputText);
             input.Reset();
         }
     }

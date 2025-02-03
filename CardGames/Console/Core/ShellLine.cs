@@ -8,7 +8,6 @@ public class ShellLine
 {
     public List<ColoredString> Parts;
     public Vector2 Size;
-    public bool EndsWithNewline;
 
     public ShellLine(string text, Color color)
     {

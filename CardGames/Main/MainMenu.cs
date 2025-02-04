@@ -1,4 +1,6 @@
-﻿namespace CardGames.Console;
+﻿using CardGames.Console;
+
+namespace CardGames;
 
 public class MainMenu : Menu
 {
